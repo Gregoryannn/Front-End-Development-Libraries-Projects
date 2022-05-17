@@ -1,5 +1,4 @@
 const domContainer = document.getElementById("root");
-
 const calcData = [
     { id: 'clear', text: 'AC' },
     { id: 'divide', text: '/' },
@@ -19,7 +18,6 @@ const calcData = [
     { id: 'zero', text: '0' },
     { id: 'decimal', text: '.' }
 ]
-
 class Calculator extends React.Component {
 
     constructor(props) {
@@ -27,7 +25,6 @@ class Calculator extends React.Component {
         this.state = {
             displayText: '0',
         }
-
     }
 
     handleClick = (id, e) => {
@@ -38,6 +35,9 @@ class Calculator extends React.Component {
 
         return (
             <div className="container">
+                <div className="logo">
+                    <i className="fab fa-free-code-camp"></i>
+                </div>
                 <Display text={this.state.displayText} />
                 <div className="grid">
                     <KeyPad onClick={this.handleClick} />
@@ -48,7 +48,6 @@ class Calculator extends React.Component {
     }
 
 }
-
 const Display = (props) => {
     return (
         <div id="display">
@@ -56,7 +55,6 @@ const Display = (props) => {
         </div>
     )
 }
-
 const KeyPad = (props) => {
 
     return (
@@ -67,7 +65,6 @@ const KeyPad = (props) => {
 
     )
 }
-
 const Button = (props) => {
     return (
         <div id={props.id} className="button" onClick={props.onClick}>
@@ -75,5 +72,4 @@ const Button = (props) => {
         </div>
     )
 }
-
 ReactDOM.render(<Calculator />, domContainer);
