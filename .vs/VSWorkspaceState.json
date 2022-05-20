@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Build a Javascript Calculator",
+    "\\Build a Javascript Calculator\\css",
+    "\\Build a Javascript Calculator\\js",
+    "\\Build a Javascript Calculator\\public",
+    "\\Build a Javascript Calculator\\src"
   ],
-  "SelectedNode": "\\C:\\Users\\asus\\Source\\Repos\\Front-End-Development-Libraries-Projects",
+  "SelectedNode": "\\Build a Javascript Calculator\\js\\app.js",
   "PreviewInSolutionExplorer": false
 }
