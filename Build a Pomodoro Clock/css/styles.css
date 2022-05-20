@@ -82,7 +82,7 @@ body {
     grid-template-rows: 1fr auto;
     justify-items: center;
     align-items: center;
-    border: 2px solid white;
+    border: 3px solid #379683;
     border-radius: 25px;
     margin: 15px;
     padding: 5px;
@@ -90,8 +90,7 @@ body {
 }
 
 #time-left {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
+    text-align: center;
     font-family: digital;
     font-size: 80px;
 }
@@ -127,10 +126,7 @@ body {
         color: blue;
     }
 
-
-
 @media (max-width: 480px) {
-
     #root {
         align-items: stretch;
         padding: 0;
