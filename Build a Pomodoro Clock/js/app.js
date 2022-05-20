@@ -1,13 +1,10 @@
 const domContainer = document.getElementById('app');
 class Pomodoro extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = this.getDefaults();
         this.audio = React.createRef()
     }
-
-
     getDefaults = () => ({
         session_num: 1,
         session_length: 25,
@@ -18,7 +15,12 @@ class Pomodoro extends React.Component {
         paused: false
     })
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     handleIncrement = (type, e) => {
+
         if (this.state.paused || this.state.btnText == 'Start') {
             if (type === "session") {
                 length = this.state.session_length;
@@ -82,10 +84,8 @@ class Pomodoro extends React.Component {
                 let session_num = prevState.session_num;
                 let timer = prevState.timer;
                 if (timer === 0) {
-
                     //play Audio
                     this.audio.current.play();
-
                     length = !in_session ? prevState.session_length
                         : prevState.break_length;
                     session_num = in_session ? session_num : session_num + 1;
@@ -104,8 +104,6 @@ class Pomodoro extends React.Component {
         }
 
     }
-
-
     handleReset = (e) => {
         this.setState(this.getDefaults());
         if (this.interval) {
@@ -114,8 +112,6 @@ class Pomodoro extends React.Component {
         }
         this.audio.current.load();
     }
-
-
     render() {
         return (
             <React.Fragment>
@@ -151,12 +147,14 @@ class Pomodoro extends React.Component {
                         onClick={this.handleStartStop}
                     />
                 </div>
-                <audio ref={this.audio} id="beep" src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3"} />
+                <audio ref={this.audio} id="beep" volume={1.0}
+                    src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3"} />
             </React.Fragment>
 
         );
     }
 }
+
 const DurationSetter = (props) => {
     let [label, decr, incr, len] = props.ids
     return (
@@ -178,9 +176,11 @@ const DurationSetter = (props) => {
         </div>
     )
 }
+
 const CountDownTimer = (props) => {
-    let minutes = Math.floor(props.timer / 60).toString().padStart(2, '0')
-    let seconds = Math.floor(((props.timer / 60) % 1) * 60).toString().padStart(2, '0')
+
+  let minutes = Math.floor(props.timer / 60).toString().padStart(2, '0');
+  let seconds = (props.timer % 60).toString().padStart(2, '0');
 
     return (
         <div className="timer-box">
