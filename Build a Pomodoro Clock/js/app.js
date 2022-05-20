@@ -1,7 +1,5 @@
 const domContainer = document.getElementById('app');
-
 class Pomodoro extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -12,27 +10,24 @@ class Pomodoro extends React.Component {
             countdown_at: 25
         }
     }
-
-
     render() {
-
         return (
 
             <React.Fragment>
-                <div className="session-number">
-                    <h2>Session #{this.state.session_num}</h2>
-                </div>
-                <div className="settings-box">
+                  <div className="settings-box">
                     <DurationSetter type="session"
-                        text="Session Label"
+                        text="Session Length"
                         length={this.state.session_length}
                         ids={['session-label', 'session-decrement', 'session-increment', 'session-length']}
                     />
                     <DurationSetter type="break"
-                        text="Break Label"
+                        text="Break Length"
                         length={this.state.break_length}
                         ids={['break-label', 'break-decrement', 'break-increment', 'break-length']}
                     />
+                </div>
+                <div className="session-number">
+                    <h4>Pomodoro #{this.state.session_num}</h4>
                 </div>
                 <div className="countdown-box">
                     <CountDownTimer in_session={this.state.in_session} />
@@ -42,17 +37,11 @@ class Pomodoro extends React.Component {
                     <TimerStatusButton type="start_stop" text="Start" />
                 </div>
             </React.Fragment>
-
         );
     }
-
 }
-
-
 const DurationSetter = (props) => {
-
     let [label, decr, incr, len] = props.ids
-
     return (
         <div className="duration-box">
             <div className="duration-title">
@@ -66,8 +55,6 @@ const DurationSetter = (props) => {
         </div>
     )
 }
-
-
 const CountDownTimer = (props) => {
 
     return (
@@ -80,31 +67,28 @@ const CountDownTimer = (props) => {
             <div id="time-left" className="countdown">
                 <div className="minute">
 
+                    25
                 </div>
+                <div className="divider">:</div>
                 <div className="seconds">
 
+                    00
                 </div>
             </div>
         </div>
     )
 }
-
 const TimerStatusButton = (props) => {
-
     let type = props.type;
     let text = props.text;
-
     return (
-
         <div className="button">
             <h2 id={type} className="btn-text">
                 {text}
             </h2>
         </div>
-
     )
 }
-
 ReactDOM.render(
     <Pomodoro />,
     domContainer
